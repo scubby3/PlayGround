@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FORGE — Strength, Conditioning & Recovery Gym</title>
+<meta name="description" content="FORGE Gym — 24/7 strength training, HIIT, yoga, personal coaching and recovery. Try 7 days free." />
+<style>
+  :root{
+    --bg:#0a0a0b; --bg2:#131316; --card:#1a1a1e; --line:#26262c;
+    --text:#f5f5f4; --muted:#a1a1aa;
+    --accent:#d4ff3f; --accent2:#ff4d24;
+    --radius:16px; --max:1180px;
+    --font: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  /* NAV */
+  header{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,11,.72);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:var(--max);margin:0 auto;padding:0 24px}
+  .logo{font-weight:900;letter-spacing:.12em;font-size:1.25rem}
+  .logo span{color:var(--accent)}
+  .links{display:flex;gap:28px;font-size:.92rem;color:var(--muted)}
+  .links a:hover{color:#fff}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:#0a0a0b;font-weight:800;padding:13px 24px;border-radius:999px;border:0;cursor:pointer;font-size:.95rem;transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,255,63,.25)}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid var(--line)}
+  .btn.small{padding:10px 18px;font-size:.88rem}
+  .hamburger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:130px 0 60px;isolation:isolate}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-2;
+    background: linear-gradient(180deg, rgba(10,10,11,.55), rgba(10,10,11,.92)),
+    url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop') center/cover;}
+  .hero::after{content:"FORGE";position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:clamp(80px,18vw,240px);font-weight:900;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08);z-index:-1;pointer-events:none;white-space:nowrap}
+  .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.06);border-radius:999px;padding:7px 14px;font-size:.82rem;color:#e7e7e7}
+  .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px #4ade80;animation:pulse 1.6s infinite}
+  @keyframes pulse{50%{opacity:.4}}
+  h1{font-size:clamp(2.6rem,6.5vw,4.8rem);line-height:.95;letter-spacing:-.03em;margin:20px 0 16px;text-transform:uppercase;font-weight:900}
+  h1 em{font-style:normal;color:var(--accent)}
+  .sub{color:#d4d4d8;max-width:560px;font-size:1.08rem}
+  .cta-row{display:flex;gap:14px;margin:28px 0 30px;flex-wrap:wrap}
+  .stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:10px}
+  .stats b{font-size:1.6rem;display:block}
+  .stats span{color:var(--muted);font-size:.85rem}
+  .hero-card{margin-left:auto;background:rgba(19,19,22,.85);border:1px solid var(--line);border-radius:20px;padding:22px;width:340px;backdrop-filter:blur(10px)}
+  .hero-grid{display:flex;gap:40px;width:100%;align-items:center}
+  .hero-copy{flex:1.2}
+  .hero-card h3{font-size:1.05rem;margin-bottom:4px}
+  .hero-card p{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+  .class-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:.9rem}
+  .class-row strong{display:block;font-size:.92rem}
+  .class-row small{color:var(--muted)}
+  .tag{font-size:.72rem;font-weight:800;background:rgba(212,255,63,.14);color:var(--accent);padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .tag.hot{background:rgba(255,77,36,.15);color:#ff8a6b}
+  /* MARQUEE */
+  .marquee{border-block:1px solid var(--line);background:var(--accent);color:#0a0a0b;font-weight:900;overflow:hidden;white-space:nowrap;padding:12px 0;letter-spacing:.06em}
+  .marquee div{display:inline-block;animation:scroll 18s linear infinite}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  /* SECTIONS */
+  section{padding:84px 0}
+  .eyebrow{color:var(--accent);font-weight:800;letter-spacing:.18em;font-size:.75rem;text-transform:uppercase}
+  h2{font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-.02em;line-height:1.05;margin:10px 0 12px;text-transform:uppercase}
+  .lead{color:var(--muted);max-width:620px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.2s}
+  .card:hover{transform:translateY(-4px);border-color:#3a3a42}
+  .icon{font-size:1.8rem;background:#232329;width:52px;height:52px;display:grid;place-items:center;border-radius:14px;margin-bottom:16px}
+  .card h3{margin-bottom:8px;font-size:1.1rem}
+  .card p{color:var(--muted);font-size:.93rem}
+  /* PROGRAMS */
+  .prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+  .prog{position:relative;border-radius:18px;overflow:hidden;min-height:380px;display:flex;align-items:end;border:1px solid var(--line)}
+  .prog img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.4s}
+  .prog:hover img{scale:1.05}
+  .prog::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.85))}
+  .prog-inner{position:relative;z-index:1;padding:22px}
+  .prog-inner h3{text-transform:uppercase;letter-spacing:.02em}
+  .prog-inner p{color:#d4d4d8;font-size:.9rem;margin:6px 0 12px}
+  /* PRICING */
+  #pricing{background:var(--bg2);border-block:1px solid var(--line)}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;align-items:stretch}
+  .price{background:#0f0f12;border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column}
+  .price.pop{border:2px solid var(--accent);position:relative;transform:scale(1.02)}
+  .price.pop::before{content:"MOST POPULAR";position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.7rem;font-weight:900;padding:4px 12px;border-radius:999px;letter-spacing:.08em}
+  .price h3{font-size:1rem;letter-spacing:.1em;color:var(--muted)}
+  .amount{font-size:2.6rem;font-weight:900;margin:10px 0}
+  .amount small{font-size:1rem;color:var(--muted);font-weight:400}
+  .price ul{list-style:none;margin:18px 0 24px;display:grid;gap:10px;color:#d4d4d8;font-size:.93rem;flex:1}
+  .price li::before{content:"✓ ";color:var(--accent);font-weight:900}
+  /* TRAINERS */
+  .train-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+  .trainer{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;text-align:center}
+  .trainer img{height:260px;width:100%;object-fit:cover;filter:grayscale(20%)}
+  .trainer div{padding:16px}
+  .trainer small{color:var(--accent);font-weight:700;letter-spacing:.08em;font-size:.75rem}
+  /* BMI + SCHEDULE */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px}
+  .panel h3{margin-bottom:12px}
+  input,select{width:100%;background:#0f0f12;border:1px solid var(--line);color:#fff;border-radius:12px;padding:12px 14px;margin:8px 0;font-size:.95rem}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:12px}
+  th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
+  th{color:var(--muted);font-size:.75rem;letter-spacing:.1em}
+  #bmiResult{margin-top:12px;font-weight:800;color:var(--accent)}
+  /* TESTIMONIALS */
+  .testi{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+  blockquote{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;font-size:.94rem;color:#e4e4e7}
+  blockquote footer{margin-top:14px;color:var(--muted);font-size:.85rem}
+  /* CTA */
+  .cta{background:linear-gradient(135deg,var(--accent),#a8ff00 60%,#fff);color:#0a0a0b;border-radius:24px;padding:48px;text-align:center;margin-top:20px}
+  .cta h2{color:#0a0a0b}
+  .cta p{opacity:.7;margin-bottom:22px}
+  .cta .btn{background:#0a0a0b;color:#fff}
+  form.cta-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+  form.cta-form input{max-width:280px;margin:0;background:#fff;border-color:transparent;color:#000}
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.9rem}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  @media(max-width:960px){
+    .hero-grid{flex-direction:column}.hero-card{margin:0;width:100%}
+    .grid3,.prog-grid,.price-grid,.testi{grid-template-columns:1fr 1fr}
+    .train-grid{grid-template-columns:1fr 1fr}
+    .split{grid-template-columns:1fr}
+  }
+  @media(max-width:640px){
+    .links,.nav-cta{display:none}
+    .hamburger{display:block}
+    .links.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;background:#0f0f12;padding:20px 24px;border-bottom:1px solid var(--line)}
+    .grid3,.prog-grid,.price-grid,.testi,.train-grid{grid-template-columns:1fr}
+    section{padding:60px 0}
+  }
+  .reveal{opacity:0;transform:translateY(18px);transition:.6s}
+  .reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="logo" href="#top">FORGE<span>.</span></a>
+    <div class="links" id="navLinks">
+      <a href="#programs">Programs</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#trainers">Coaches</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="#pricing" class="btn small nav-cta">7 Days Free</a>
+      <button class="hamburger" id="menuBtn" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="badge"><span class="dot"></span> Open now · 24/7 in Downtown + Westside</span>
+      <h1>Build muscle.<br />Burn fat.<br /><em>Forge discipline.</em></h1>
+      <p class="sub">2,400 m² of iron, turf, sauna & recovery. Certified coaches, 60+ weekly classes, and a plan built around your body — not a template.</p>
+      <div class="cta-row">
+        <a class="btn" href="#contact">Start 7 Days Free →</a>
+        <a class="btn ghost" href="#programs">Explore programs</a>
+      </div>
+      <div class="stats">
+        <div><b>4.9★</b><span>2,300+ Google reviews</span></div>
+        <div><b>60+</b><span>classes / week</span></div>
+        <div><b>24/7</b><span>always open</span></div>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <h3>🔥 Today's classes</h3>
+      <p>3 spots left in HIIT Blast — book ahead.</p>
+      <div class="class-row"><div><strong>HIIT Blast</strong><small>06:30 · 45 min · Coach Maya</small></div><span class="tag hot">Almost full</span></div>
+      <div class="class-row"><div><strong>Powerlifting Club</strong><small>12:15 · 75 min · Coach Dre</small></div><span class="tag">Open</span></div>
+      <div class="class-row"><div><strong>Yoga + Mobility</strong><small>18:00 · 60 min · Coach Lena</small></div><span class="tag">Open</span></div>
+      <div class="class-row"><div><strong>Boxing Fundamentals</strong><small>19:30 · 60 min · Coach Sam</small></div><span class="tag">Open</span></div>
+    </aside>
+  </div>
+</div>
+
+<div class="marquee"><div>STRENGTH &nbsp;★&nbsp; CONDITIONING &nbsp;★&nbsp; HIIT &nbsp;★&nbsp; BOXING &nbsp;★&nbsp; YOGA &nbsp;★&nbsp; SAUNA &nbsp;★&nbsp; RECOVERY &nbsp;★&nbsp; NUTRITION &nbsp;★&nbsp; STRENGTH &nbsp;★&nbsp; CONDITIONING &nbsp;★&nbsp; HIIT &nbsp;★&nbsp; BOXING &nbsp;★&nbsp; YOGA &nbsp;★&nbsp; SAUNA &nbsp;★&nbsp; RECOVERY &nbsp;★&nbsp; NUTRITION &nbsp;★&nbsp;</div></div>
+
+<section id="features">
+  <div class="wrap">
+    <span class="eyebrow">Why Forge</span>
+    <h2>Everything you need to stay consistent</h2>
+    <p class="lead">No crowds at the squat rack, no guesswork. Just great equipment, smart programming and people who know your name.</p>
+    <div class="grid3">
+      <div class="card reveal"><div class="icon">🏋️</div><h3>2,400 m² training floor</h3><p>8 squat racks, Eleiko barbells, 60m turf sled track, dedicated Olympic lifting zone and women's-only area.</p></div>
+      <div class="card reveal"><div class="icon">🧑‍🏫</div><h3>Coaching that adapts</h3><p>Free onboarding assessment + quarterly check-ins. Every plan adjusts to your progress, injuries and schedule.</p></div>
+      <div class="card reveal"><div class="icon">🧖</div><h3>Recover like a pro</h3><p>Finnish sauna, cold plunge, compression boots and physio on-site. Recovery is included in every membership.</p></div>
+      <div class="card reveal"><div class="icon">📱</div><h3>App + tracking</h3><p>Book classes, log lifts, track habits and message your coach. Apple Watch / Strava sync included.</p></div>
+      <div class="card reveal"><div class="icon">🥗</div><h3>Nutrition support</h3><p>Monthly meal frameworks, protein bar, and InBody scans — no crash diets, just sustainable fuel.</p></div>
+      <div class="card reveal"><div class="icon">🌙</div><h3>Truly 24/7</h3><p>Secure keycard access, staffed 6am–10pm. Train at 5am or midnight — the lights (and sauna) are on.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="programs" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">Programs</span>
+    <h2>Pick your fight</h2>
+    <p class="lead">All levels welcome. Every class scales — first-timers train next to competitors.</p>
+    <div class="prog-grid">
+      <div class="prog reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" alt="Strength" /><div class="prog-inner"><span class="tag">Strength</span><h3>Iron Strength</h3><p>Powerlifting & hypertrophy blocks. Get strong, safely.</p></div></div>
+      <div class="prog reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=1200&auto=format&fit=crop" alt="HIIT" /><div class="prog-inner"><span class="tag">Burn 600 kcal</span><h3>HIIT & Conditioning</h3><p>Sleds, ropes, assault bikes. 45 minutes, zero boredom.</p></div></div>
+      <div class="prog reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1200&auto=format&fit=crop" alt="Boxing" /><div class="prog-inner"><span class="tag">Boxing</span><h3>Fight Fit Boxing</h3><p>Footwork, bags, pads. Wrap up, gloves on, stress off.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <span class="eyebrow">Pricing</span>
+    <h2>Simple plans, no lock-in traps</h2>
+    <p class="lead">7-day free trial on all plans. Cancel monthly anytime. Students & couples save 15%.</p>
+    <div class="price-grid">
+      <div class="price reveal">
+        <h3>OFF-PEAK</h3>
+        <div class="amount">$29<small>/mo</small></div>
+        <p style="color:var(--muted);font-size:.9rem">Train 9am–4pm weekdays + weekends.</p>
+        <ul><li>Full gym floor access</li><li>1 group class / week</li><li>Locker room + sauna</li><li>App tracking</li></ul>
+        <a class="btn ghost" href="#contact">Choose Off-Peak</a>
+      </div>
+      <div class="price pop reveal">
+        <h3>ALL ACCESS</h3>
+        <div class="amount">$49<small>/mo</small></div>
+        <p style="color:var(--muted);font-size:.9rem">Our most popular. Unlimited everything.</p>
+        <ul><li>24/7 unlimited access, both locations</li><li>Unlimited classes</li><li>Sauna + cold plunge + recovery zone</li><li>Quarterly coach check-in + InBody</li><li>Guest pass monthly</li></ul>
+        <a class="btn" href="#contact">Start 7 Days Free</a>
+      </div>
+      <div class="price reveal">
+        <h3>ELITE COACHING</h3>
+        <div class="amount">$129<small>/mo</small></div>
+        <p style="color:var(--muted);font-size:.9rem">All Access + 1-on-1 personal training.</p>
+        <ul><li>Everything in All Access</li><li>2× PT sessions / month</li><li>Custom nutrition plan</li><li>Priority class booking</li></ul>
+        <a class="btn ghost" href="#contact">Talk to a coach</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trainers">
+  <div class="wrap">
+    <span class="eyebrow">Coaches</span>
+    <h2>Train with people who care</h2>
+    <div class="train-grid">
+      <div class="trainer reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=800&auto=format&fit=crop" alt="Coach Maya" /><div><small>HIIT / CONDITIONING</small><h3>Maya R.</h3><p style="color:var(--muted);font-size:.85rem">Ex-sprinter · 8 yrs coaching</p></div></div>
+      <div class="trainer reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?q=80&w=800&auto=format&fit=crop" alt="Coach Dre" /><div><small>STRENGTH</small><h3>Dre K.</h3><p style="color:var(--muted);font-size:.85rem">240kg deadlift · Rehab specialist</p></div></div>
+      <div class="trainer reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=800&auto=format&fit=crop" alt="Coach Lena" /><div><small>YOGA / MOBILITY</small><h3>Lena S.</h3><p style="color:var(--muted);font-size:.85rem">500h YTT · Breathwork</p></div></div>
+      <div class="trainer reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop" alt="Coach Sam" /><div><small>BOXING</small><h3>Sam T.</h3><p style="color:var(--muted);font-size:.85rem">12-2 amateur · All levels</p></div></div>
+    </div>
+
+    <div class="split" id="schedule">
+      <div class="panel">
+        <span class="eyebrow">Weekly schedule</span>
+        <h3>Peak classes at a glance</h3>
+        <table>
+          <tr><th>TIME</th><th>MON–FRI</th><th>WEEKEND</th></tr>
+          <tr><td>06:30</td><td>HIIT Blast</td><td>Sat: Hyrox Prep</td></tr>
+          <tr><td>12:15</td><td>Powerlifting Club</td><td>Sun: Full-Body Burn</td></tr>
+          <tr><td>18:00</td><td>Yoga + Mobility</td><td>Sun: Yoga Reset</td></tr>
+          <tr><td>19:30</td><td>Boxing Fundamentals</td><td>Sat: Open Mat</td></tr>
+        </table>
+      </div>
+      <div class="panel">
+        <span class="eyebrow">BMI calculator</span>
+        <h3>Where are you starting from?</h3>
+        <div style="display:flex;gap:10px">
+          <input id="height" type="number" placeholder="Height (cm)" value="178" />
+          <input id="weight" type="number" placeholder="Weight (kg)" value="82" />
+        </div>
+        <button class="btn small" id="bmiBtn" style="margin-top:10px">Calculate BMI</button>
+        <div id="bmiResult"></div>
+        <p style="color:var(--muted);font-size:.82rem;margin-top:8px">Coaches use this + a free InBody scan during your trial to set your first 4-week plan.</p>
+      </div>
+    </div>
+
+    <div class="testi">
+      <blockquote class="reveal">“Lost 14kg in 5 months. The coaches actually texted me when I missed a week. Never had that anywhere else.”<footer>— Jess P., member since 2023</footer></blockquote>
+      <blockquote class="reveal">“Squat went from 80 to 140kg. Programming is smart, floor is never overcrowded, sauna after leg day is heaven.”<footer>— Marcus L., member since 2022</footer></blockquote>
+      <blockquote class="reveal">“As a mom of two I only train at 6am. Safe parking, great childcare window, and the 6:30 HIIT crew is family.”<footer>— Aisha K., member since 2024</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <span class="eyebrow" style="color:#0a0a0b">7-day free trial · no card required</span>
+      <h2>Your first workout is on us</h2>
+      <p>Drop your email — we'll send a trial pass + free class booking link in under 5 minutes.</p>
+      <form class="cta-form" id="trialForm">
+        <input type="email" id="email" placeholder="you@email.com" required />
+        <button class="btn" type="submit">Claim Free Trial</button>
+      </form>
+      <p id="formMsg" style="margin-top:12px;font-weight:800"></p>
+      <p style="font-size:.82rem;margin-top:10px">📍 44 Iron Street, Downtown · Open 24/7 · ☎ (555) 019-2834</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div><a class="logo" href="#top" style="color:#fff">FORGE<span>.</span></a><br />© 2026 Forge Athletics. Train hard, recover harder.</div>
+    <div>Instagram · TikTok · YouTube<br />hello@forgegym.com</div>
+    <div>Downtown: 44 Iron St<br />Westside: 9 Harbor Ave</div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav
+  const btn = document.getElementById('menuBtn');
+  const links = document.getElementById('navLinks');
+  btn.onclick = () => links.classList.toggle('open');
+  links.querySelectorAll('a').forEach(a => a.onclick = () => links.classList.remove('open'));
+
+  // BMI
+  const bmiBtn = document.getElementById('bmiBtn');
+  bmiBtn.onclick = () => {
+    const h = parseFloat(document.getElementById('height').value)/100;
+    const w = parseFloat(document.getElementById('weight').value);
+    const out = document.getElementById('bmiResult');
+    if(!h || !w){ out.textContent = 'Enter height + weight.'; return; }
+    const bmi = (w/(h*h)).toFixed(1);
+    let cat = bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Healthy ✅' : bmi < 30 ? 'Overweight' : 'Obese';
+    out.textContent = `Your BMI: ${bmi} — ${cat}`;
+  };
+
+  // trial form
+  document.getElementById('trialForm').onsubmit = e => {
+    e.preventDefault();
+    const em = document.getElementById('email').value;
+    document.getElementById('formMsg').textContent = `💪 You're in! Trial pass sent to ${em} — check your inbox.`;
+    document.getElementById('email').value = '';
+  };
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('visible')), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
